@@ -1,0 +1,9 @@
+{
+    "dev": [
+        "host1.local",
+        "xzmRMBP"
+    ],
+    "product": [
+        "abc.com"
+    ]
+}
