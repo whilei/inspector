@@ -16,11 +16,7 @@ func hostname() string {
 }
 
 func DetectModel() string {
-	appPath, err := filepath.Abs("../inspector/resource")
-	if err != nil {
-		panic(err)
-	}
-	hostsConfigFile := filepath.Join(appPath, ConfigDir, HostsFile)
+	hostsConfigFile := filepath.Join(ConfigDir, HostsFile)
 	conf, err := ioutil.ReadFile(hostsConfigFile);
 	if err != nil {
 		panic("hosts config not found : " + hostsConfigFile)
