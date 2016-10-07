@@ -5,6 +5,9 @@ import (
 	"os"
 	"path/filepath"
 	"io/ioutil"
+	"errors"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/utils"
 )
 
 func hostname() string {
@@ -13,6 +16,20 @@ func hostname() string {
 		hostname = ""
 	}
 	return hostname
+}
+
+func ConfigHook() error {
+	env := DetectModel()
+	if env == "" {
+		return errors.New("cant detect run mode")
+	}
+	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-", env, ".conf")
+	if utils.FileExists(configFile) {
+		beego.AppConfigPath = configFile
+	} else {
+		return errors.New("config file not found : should be " + configFile)
+	}
+	return nil
 }
 
 func DetectModel() string {
