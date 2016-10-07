@@ -23,7 +23,7 @@ func ConfigHook() error {
 	if env == "" {
 		return errors.New("cant detect run mode")
 	}
-	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-" + env, ".conf")
+	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-" + env + ".conf")
 	if utils.FileExists(configFile) {
 		beego.LoadAppConfig("ini", configFile)
 	} else {
