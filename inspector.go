@@ -25,7 +25,7 @@ func ConfigHook() error {
 	}
 	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-", env, ".conf")
 	if utils.FileExists(configFile) {
-		beego.AppConfigPath = configFile
+		beego.LoadAppConfig("ini", configFile)
 	} else {
 		return errors.New("config file not found : should be " + configFile)
 	}
