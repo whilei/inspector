@@ -6,8 +6,8 @@ detect runtime env by hosts name
 ```shell
 //create config files as :
 |- conf
-    |--- app-dev.conf
-	|--- app-product.conf
+    |--- app-dev.ini
+	|--- app-product.ini
 	|--- hosts.json
 ```
 
@@ -33,7 +33,7 @@ import (
 //...
 func main() {
     //...
-    beego.AddAPPStartHook(inspector.ConfigHook)
+    inspector.Inspect("ini")
 }
 
 ```
