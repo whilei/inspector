@@ -20,13 +20,15 @@ func hostname() string {
 func ConfigFile() (string, error) {
 	env := DetectModel()
 	if env == "" {
-		return "", errors.New("cant detect run mode")
+		return "", errors.New("cant detect run mode by hosts.json")
 	}
 	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-" + env)
 	return configFile, nil
 }
 
+//
 func Inspect(formate string) {
+	beego.BeeLogger.Info("load configuration from conf/*." + formate + " by hostname in conf/hosts.json")
 	if file, err := ConfigFile(); err != nil {
 		panic(err)
 	} else {
