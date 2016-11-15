@@ -22,6 +22,7 @@ func ConfigFile() (string, error) {
 	if env == "" {
 		return "", errors.New("cant detect run mode by hosts.json")
 	}
+	beego.Info("inspector : " + env)
 	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-" + env)
 	return configFile, nil
 }
