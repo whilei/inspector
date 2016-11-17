@@ -14,6 +14,7 @@ func hostname() string {
 	if err != nil {
 		hostname = ""
 	}
+	beego.Trace("hostname : " + hostname)
 	return hostname
 }
 
@@ -28,7 +29,7 @@ func ConfigFile() (string, error) {
 
 //
 func Inspect(formate string) {
-	beego.BeeLogger.Info("load configuration from conf/*." + formate + " by hostname in conf/hosts.json")
+	beego.Trace("load configuration from conf/*." + formate + " by hostname in conf/hosts.json")
 	if file, err := ConfigFile(); err != nil {
 		panic(err)
 	} else {
@@ -48,10 +49,12 @@ func DetectModel() string {
 	for i, k := range config {
 		for _, h := range k {
 			if h == hostname {
+				beego.Trace("cluster : " + i)
 				return i
 			}
 		}
 	}
+	beego.Trace("cluster : ")
 	return ""
 }
 
