@@ -2,11 +2,11 @@ package inspector
 
 import (
 	"encoding/json"
-	"os"
-	"path/filepath"
-	"io/ioutil"
 	"errors"
 	"github.com/astaxie/beego"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 )
 
 func hostname() string {
@@ -24,7 +24,7 @@ func ConfigFile() (string, error) {
 		return "", errors.New("cant detect run mode by hosts.json")
 	}
 	beego.Info("inspector : " + env)
-	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-" + env)
+	configFile := filepath.Join(beego.AppPath, ConfigDir, "app-"+env)
 	return configFile, nil
 }
 
@@ -35,13 +35,13 @@ func Inspect(formate string) {
 		panic(err)
 	} else {
 		//fmt.Println(file)
-		beego.LoadAppConfig(formate, file + "." + formate)
+		beego.LoadAppConfig(formate, file+"."+formate)
 	}
 }
 
 func DetectModel() string {
 	hostsConfigFile := filepath.Join(ConfigDir, HostsFile)
-	conf, err := ioutil.ReadFile(hostsConfigFile);
+	conf, err := ioutil.ReadFile(hostsConfigFile)
 	if err != nil {
 		panic("hosts config not found : " + hostsConfigFile)
 	}

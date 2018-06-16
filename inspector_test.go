@@ -14,7 +14,7 @@ func TestParseHostsConfig(t *testing.T) {
 	if config["dev"] == nil {
 		t.Error("failed")
 	}
-	devHosts := config["dev"];
+	devHosts := config["dev"]
 	if len(devHosts) != 1 {
 		t.Error("format error")
 	}
